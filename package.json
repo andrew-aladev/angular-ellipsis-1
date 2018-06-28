@@ -1,17 +1,16 @@
 {
 	"author": "https://github.com/dibari",
 	"name": "angular-ellipsis",
-	"main": "src/angular-ellipsis.js",
+	"main": "index.js",
 	"keywords": [
 		"angular",
 		"directives",
 		"ellipsis",
 		"truncate"
 	],
-        "main": "index.js",
-	"description" : "Angular directive to truncate multi-line text",
+	"description": "Angular directive to truncate multi-line text",
 	"version": "0.1.6",
-	"homepage" : "https://github.com/dibari/angular-ellipsis",
+	"homepage": "https://github.com/dibari/angular-ellipsis",
 	"repository": {
 		"type": "git",
 		"url": "git://github.com/dibari/angular-ellipsis.git"
