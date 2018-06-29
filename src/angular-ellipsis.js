@@ -28,7 +28,7 @@ angular.module("dibari.angular-ellipsis", [])
       return node.scrollWidth > node.clientWidth || node.scrollHeight > node.clientHeight;
     }
 
-    function buildEllipsis(element, node, originalText, separator, symbol, appendText) {
+    function buildEllipsis(element, node, originalText, separator, symbol) {
       if (originalText == null) {
         return;
       }
@@ -101,10 +101,6 @@ angular.module("dibari.angular-ellipsis", [])
         text = newText
         break;
       }
-
-      if (appendText != null) {
-        element.text(text + appendText);
-      }
     }
 
     return {
@@ -116,7 +112,6 @@ angular.module("dibari.angular-ellipsis", [])
 
         ellipsisSeparator:       "@",
         ellipsisSymbol:          "@",
-        ellipsisAppend:          "@",
         ellipsisDebounceTimeout: "@"
       },
 
@@ -131,8 +126,7 @@ angular.module("dibari.angular-ellipsis", [])
                 node,
                 scope.ngBind,
                 scope.ellipsisSeparator || DEFAULT_SEPARATOR,
-                scope.ellipsisSymbol    || DEFAULT_SYMBOL,
-                scope.ellipsisAppend
+                scope.ellipsisSymbol    || DEFAULT_SYMBOL
               );
             },
             scope.ellipsisDebounceTimeout || DEFAULT_DEBOUNCE_TIMEOUT
@@ -141,7 +135,7 @@ angular.module("dibari.angular-ellipsis", [])
           scope.$watchGroup(
             [
               "ngShow", "ngBind",
-              "ellipsisSeparator", "ellipsisSymbol", "ellipsisAppend", "ellipsisDebounceTimeout",
+              "ellipsisSeparator", "ellipsisSymbol", "ellipsisDebounceTimeout",
               function() { return node.offsetWidth > 0 && node.offsetHeight != 0; }
             ],
             process
