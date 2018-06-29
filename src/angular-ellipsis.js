@@ -51,7 +51,7 @@ angular.module("dibari.angular-ellipsis", [])
 
       while(true) {
         var leftTailWordsCount = Math.ceil(tailWordsCount / 2);
-        var newText            = words.slice(0, wordsCount + leftTailWordsCount).join(' ');
+        var newText            = words.slice(0, wordsCount + leftTailWordsCount).join(separator);
         element.text(newText);
 
         if (hasOverflow(node)) {
@@ -94,11 +94,16 @@ angular.module("dibari.angular-ellipsis", [])
           }
 
           wordsCount--;
-          text = words.slice(0, wordsCount).join(' ');
+          text = words.slice(0, wordsCount).join(separator);
           continue;
         }
 
+        text = newText
         break;
+      }
+
+      if (appendText != null) {
+        element.text(text + appendText);
       }
     }
 
@@ -144,27 +149,22 @@ angular.module("dibari.angular-ellipsis", [])
 
           var windowWidth  = null;
           var windowHeight = null;
-
           var scrollWidth  = null;
           var clientWidth  = null;
           var scrollHeight = null;
           var clientHeight = null;
 
           function onResize() {
-            if (windowWidth == $window.innerWidth && windowHeight == $window.innerHeight) {
+            if (
+              windowWidth  == $window.innerWidth && windowHeight == $window.innerHeight &&
+              scrollWidth  == node.scrollWidth   && clientWidth  == node.clientWidth &&
+              scrollHeight == node.scrollHeight  && clientHeight == node.clientHeight
+            ) {
               return;
             }
 
             windowWidth  = $window.innerWidth;
             windowHeight = $window.innerHeight;
-
-            if (
-              scrollWidth  == node.scrollWidth  && clientWidth  == node.clientWidth &&
-              scrollHeight == node.scrollHeight && clientHeight == node.clientHeight
-            ) {
-              return;
-            }
-
             scrollWidth  = node.scrollWidth;
             clientWidth  = node.clientWidth;
             scrollHeight = node.scrollHeight;
