@@ -49,6 +49,9 @@ module.exports = function(grunt) {
 
 		// Minify all JS files
 		uglify: {
+			options: {
+				mangle: false
+			},
 			my_target: {
 				files: {
 					'src/angular-ellipsis.min.js': [
